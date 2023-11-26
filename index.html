@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ua">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratatype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'manrope': ['Manrope', 'sans-serif'],
+                    },
+                    spacing: {
+                        'gap50': '50px',
+                        'gap5': '5px'
+                    },
+                    margin: {
+                        'mt10': '10px',
+                    },
+                    padding: {
+                        'px15': '15px',
+                        'py10': '10px'
+                    },
+                    maxWidth: {
+                        '550': '550px',
+                    },
+                    colors: {
+                        lightTextPrimary: '#0A335C',
+                        shadowTertiaryDefault: '#00ACFF',
+                        lightBordePrimary: 'rgba(23, 66, 88, 0.10)',
+                        lightBackgroundBgSecondary: '#EEF4F6',
+                        lightTextSecondary: 'rgba(23, 66, 88, 0.80)',
+                        lightOtherYellow: '#FC0',
+                        lightOtherYellowOther: '#FFEB99',
+                        lightOtherRed: '#FF3B30'
+                    },
+                    borderRadius: {
+                        'br10': '10px'
+                    },
+                    boxShadow: {
+                        '1lg': ' 0px 4px 0px 0px #00ACFF;',
+                        '2lg': '0px 4px 0px 0px #FC0;'
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body class="font-['Manrope'] font-medium text-xl text-lightTextPrimary">
+    <div class="flex flex-col px-5 sm:px-0 mx-auto max-w-550 w-full mt-mt10 md:mt-5 gap-gap50">
+        <header class="flex justify-center">
+            <img src="images/logo.svg" alt="ratatype-logo">
+        </header>
+        <main class="flex flex-col items-center gap-5">
+            <img src="images/star-logo.svg" alt="star-logo">
+            <h1 class=" text-6xl font-extrabold">Увійти</h1>
+            <button
+                class="flex justify-center flex-row gap-gap5 items-center shadow-1lg border-2 w-full border-shadowTertiaryDefault rounded-br10"
+                tabindex="1" aria-label="Google вхід">
+                <img src="images/google-icon.svg" alt="google-icon">Google</button>
+            <p>або</p>
+            <form class="flex flex-col w-full gap-5" action="#" method="post" novalidate id="loginForm">
+                <div class="relative flex flex-col gap-gap5">
+                    <input type="email" id="input-email" class="rounded-br10 border-lightBordePrimary border-2 w-full bg-[#EEF4F6] px-px15 pt-7 pb-3 peer  block w-full   placeholder:text-transparent  disabled:pointer-events-none 
+                    autofill:pt-6
+                    autofill:pb-2" placeholder="Ел. пошта" tabindex="2" aria-label="Ел. пошта">
+                    <p class="text-base text-lightOtherRed hidden" id="error-helper">Вкажіть вашу ел.
+                        пошту</p>
+                    <label for="input-email" class="absolute top-0 start-0 text-xl px-px15 py-5 h-full  text-lightTextSecondary truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                      peer-focus:text-base
+                      peer-focus:-translate-y-3
+                      peer-focus:text-lightTextSecondary
+                      peer-[:not(:placeholder-shown)]:text-base
+                      peer-[:not(:placeholder-shown)]:-translate-y-3
+                      peer-[:not(:placeholder-shown)]:text-lightTextSecondary">Ел. пошта</label>
+                </div>
+                <div class="relative flex flex-col gap-gap5">
+                    <input type="password" id="input-password" class="rounded-br10 border-lightBordePrimary border-2 w-full bg-[#EEF4F6] px-px15 pt-7 pb-3 peer  block w-full   placeholder:text-transparent  disabled:pointer-events-none 
+                    autofill:pt-6
+                    autofill:pb-2" placeholder="Пароль" tabindex="3" aria-label="Пароль">
+                    <label for="input-password" class="absolute top-0 start-0 px-px15 py-5 h-full text-lightTextSecondary truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                      peer-focus:text-base
+                      peer-focus:-translate-y-1.5
+                      peer-focus:text-lightTextSecondary
+                      peer-[:not(:placeholder-shown)]:text-base
+                      peer-[:not(:placeholder-shown)]:-translate-y-1.5
+                      peer-[:not(:placeholder-shown)]:text-lightTextSecondary">Пароль</label>
+                    <a href="#" class="text-lightTextSecondary text-base underline" tabindex="4" aria-label="Не пам'ятаєш
+                    пароль?">Не пам'ятаєш
+                        пароль?</a>
+                </div>
+
+                <button
+                    class="rounded-br10 border-2 shadow-2lg border-lightOtherYellow bg-lightOtherYellowOther px-5 py-py10 font-bold "
+                    type="submit" tabindex="5" aria-label="Увійти">Увійти</button>
+                <a href="#" class="text-center" tabindex="6" aria-label="Зареєструватися">Ще не з нами? <span
+                        class="underline font-bold">Зареєструватися</span></a>
+            </form>
+        </main>
+    </div>
+
+</body>
+
+<script>
+    const emailInput = document.getElementById('input-email');
+    const errorHelper = document.getElementById('error-helper');
+
+    emailInput.addEventListener('input', () => {
+        errorHelper.classList.add('hidden');
+        emailInput.style.borderColor = '#B3B3B3';
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const emailValue = emailInput.value;
+
+        if (!emailValue || !isValidEmail(emailValue)) {
+            errorHelper.classList.remove('hidden');
+            emailInput.style.borderColor = '#FF3B30';
+            return;
+        }
+
+        console.log('Форму відправлено успішно!');
+    });
+
+    const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+</script>
+
+</html>
